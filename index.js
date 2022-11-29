@@ -9,17 +9,22 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.q66zrl2.mongodb.net/?retryWrites=true&w=majority`;
+
+const uri = `mongodb+srv://module65-crud-operations:123456789abcde@cluster0.1jtbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
 });
 
+
 const run = async () => {
   try {
+    await client.connect();
     const db = client.db("moontech");
-    const productCollection = db.collection("product");
+    const productCollection = db.collection("context_products");
+
+    console.log("Database connected");
 
     app.get("/products", async (req, res) => {
       const cursor = productCollection.find({});
