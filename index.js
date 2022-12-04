@@ -22,7 +22,7 @@ const run = async () => {
   try {
     await client.connect();
     const db = client.db("moontech");
-    const productCollection = db.collection("context_products");
+    const productCollection = db.collection("reactReduxThunkMultiReducer");
 
     console.log("Database connected");
 
